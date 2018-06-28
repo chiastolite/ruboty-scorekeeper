@@ -29,6 +29,11 @@ module Ruboty
         name: "delete",
         description: "Delete a point of <name>",
       )
+
+      on( /scorekeeper merge (?<from_name>.+) with (?<to_name>.+)/i,
+        name: "merge",
+        description: "Merge a point of <from_name> with <to_name>",
+      )
       private
 
       def increment(message)
@@ -68,6 +73,17 @@ module Ruboty
         else
           message.reply("#{name} is not found")
         end
+      end
+
+      def merge(message)
+        from = normalize_name(message[:from_name])
+        to   = normalize_name(message[:to_name])
+        from_point = scores[from] || 0
+        to_point   = scores[to] || 0
+
+        scores[to] = to_point + from_point
+        scores.delete(from)
+        message.reply("Merge {from_point}pt of #{from} with #{to}")
       end
 
       def scores

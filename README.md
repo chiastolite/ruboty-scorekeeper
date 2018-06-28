@@ -30,6 +30,7 @@ decremented yoshiori (-1 pt)
 * scorekeeper {name} - Show current point of {name}
 * what's the score of {name} - Show current point of {name}
 * scorekeeper delete {name} - Delete a point of {name}
+* scorekeeper merge {from_name} with {to_name} - Merge a point of {fron_name} with {to_name}
 
 ## Contributing
 

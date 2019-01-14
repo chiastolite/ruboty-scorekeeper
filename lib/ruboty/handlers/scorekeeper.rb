@@ -30,7 +30,7 @@ module Ruboty
         description: "Delete a point of <name>",
       )
 
-      on( /scorekeeper delete_all/i,
+      on( /scorekeeper delete all/i,
         name: "delete_all",
         description: "Delete all point",
       )
@@ -75,7 +75,7 @@ module Ruboty
         end
       end
 
-      def delete_all
+      def delete_all(message)
         message.reply(
           scores.sort_by{|key, value|
             -value

@@ -29,6 +29,11 @@ module Ruboty
         name: "delete",
         description: "Delete a point of <name>",
       )
+
+      on( /scorekeeper delete_all/i,
+        name: "delete_all",
+        description: "Delete all point",
+      )
       private
 
       def increment(message)
@@ -68,6 +73,17 @@ module Ruboty
         else
           message.reply("#{name} is not found")
         end
+      end
+
+      def delete_all
+        message.reply(
+          scores.sort_by{|key, value|
+            -value
+          }.map.with_index(1){|data, index|
+            "#{index} : #{data.first} (#{data.last} pt)"
+          }.join("\n")
+        )
+        robot.brain.data[NAMESPACE] = {}
       end
 
       def scores

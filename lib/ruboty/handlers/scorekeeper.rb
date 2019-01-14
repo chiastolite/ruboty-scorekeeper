@@ -3,6 +3,10 @@ module Ruboty
     class Scorekeeper < Base
       NAMESPACE = "scorekeeper"
 
+      on( /scorekeeper delete all/i,
+        name: "delete_all",
+        description: "Delete all point",
+      )
       on( /(?<name>.+[^+])\+\+$/,
         name: "increment",
         description: "Increment <name>'s point",
@@ -30,10 +34,6 @@ module Ruboty
         description: "Delete a point of <name>",
       )
 
-      on( /scorekeeper delete all/i,
-        name: "delete_all",
-        description: "Delete all point",
-      )
       private
 
       def increment(message)
